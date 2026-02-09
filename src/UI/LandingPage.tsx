@@ -51,48 +51,76 @@ export const LandingPageUI = () => {
                         pointerEvents: 'auto',
                         textAlign: 'center',
                         width: '100%',
-                        maxWidth: '1400px', // constrain slightly on ultra-wide
-                        background: 'rgba(255, 255, 255, 0.03)', // Very subtle glass
-                        backdropFilter: 'blur(10px)',
-                        borderRadius: isMobile ? '30px' : '50px', // Rounded corners
-                        border: '1px solid rgba(255, 255, 255, 0.05)',
-                        padding: isMobile ? '40px 20px' : '80px 40px',
-                        boxShadow: '0 20px 50px rgba(0,0,0,0.2)'
+                        maxWidth: '1200px',
+                        display: 'flex',
+                        flexDirection: 'column',
+                        alignItems: 'center',
+                        zIndex: 2
                     }}
                 >
+                    {/* MAIN TITLE */}
                     <h1 style={{
-                        fontSize: isMobile ? '3.5rem' : '12vw', // Reduced desktop size slightly to fit in card
+                        fontSize: isMobile ? '3.5rem' : '11vw',
                         fontWeight: 900,
-                        letterSpacing: '-0.03em',
-                        lineHeight: 0.9,
-                        color: '#fff',
+                        letterSpacing: '-0.04em',
+                        lineHeight: 0.85,
                         margin: 0,
-                        textShadow: '0 10px 30px rgba(0,0,0,0.5)'
+                        // Premium Metallic Gradient
+                        background: 'linear-gradient(180deg, #FFFFFF 0%, #888888 100%)',
+                        WebkitBackgroundClip: 'text',
+                        WebkitTextFillColor: 'transparent',
+                        textShadow: '0 20px 50px rgba(0,0,0,0.5)', // Deep shadow behind the gradient
+                        position: 'relative',
+                        zIndex: 2
                     }}>
                         LUMINA
                     </h1>
+
+                    {/* SUBTITLE */}
                     <p style={{
                         fontSize: isMobile ? '1rem' : '1.5rem',
-                        opacity: 0.8,
+                        color: '#cccccc', // Softer grey for contrast
                         marginTop: isMobile ? '1.5rem' : '2rem',
                         letterSpacing: '0.2em',
                         lineHeight: 1.5,
-                        textTransform: 'uppercase'
+                        textTransform: 'uppercase',
+                        maxWidth: '600px',
+                        fontWeight: 400
                     }}>
                         The Affiliate Nexus
                     </p>
-                    <div style={{ marginTop: isMobile ? '2rem' : '4rem' }}>
-                        <span style={{
-                            fontSize: '0.75rem',
-                            border: '1px solid rgba(255,255,255,0.3)',
-                            padding: '12px 24px',
-                            borderRadius: '30px',
-                            background: 'rgba(0,0,0,0.4)',
-                            backdropFilter: 'blur(10px)',
-                            letterSpacing: '0.1em'
+
+                    {/* BUTTONS */}
+                    <div style={{ marginTop: isMobile ? '2rem' : '4rem', display: 'flex', gap: '20px', flexDirection: isMobile ? 'column' : 'row', alignItems: 'center' }}>
+                        <button style={{
+                            background: '#fff',
+                            color: '#000',
+                            border: 'none',
+                            padding: isMobile ? '16px 32px' : '18px 48px',
+                            fontSize: '1rem',
+                            fontWeight: 700,
+                            borderRadius: '50px',
+                            cursor: 'pointer',
+                            boxShadow: '0 10px 30px rgba(255,255,255,0.15)',
+                            letterSpacing: '-0.01em',
+                            width: isMobile ? '100%' : 'auto'
                         }}>
-                            SCROLL TO ENTER
-                        </span>
+                            Initialize
+                        </button>
+                        <button style={{
+                            background: 'rgba(255,255,255,0.05)',
+                            color: '#fff',
+                            border: '1px solid rgba(255,255,255,0.1)',
+                            padding: isMobile ? '16px 32px' : '18px 48px',
+                            fontSize: '1rem',
+                            fontWeight: 600,
+                            borderRadius: '50px',
+                            cursor: 'pointer',
+                            backdropFilter: 'blur(10px)',
+                            width: isMobile ? '100%' : 'auto'
+                        }}>
+                            Documentation
+                        </button>
                     </div>
                 </motion.div>
             </Section>
