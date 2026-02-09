@@ -8,8 +8,10 @@ import { ShapeShifter } from './scenes/ShapeShifter'
 
 export const SceneController = ({ intro, introPhase = 0 }: { intro: boolean, introPhase?: number }) => {
     const { viewport } = useThree()
+    // Mobile Logic: Dim the background significantly for readability
     const isMobile = viewport.width < 5
     const mobileScale = isMobile ? 0.7 : 1
+    const mobileOpacity = isMobile ? 0.3 : 1 // 30% opacity on mobile
 
     const scroll = useScroll()
     const [scrollProgress, setScrollProgress] = useState(0)
@@ -89,11 +91,11 @@ export const SceneController = ({ intro, introPhase = 0 }: { intro: boolean, int
             </group>
 
             <group ref={fluidRef}>
-                <FluidStart opacity={1 - scrollProgress * 2} />
+                <FluidStart opacity={(1 - scrollProgress * 2) * mobileOpacity} />
             </group>
 
             <group ref={depthRef}>
-                <DepthAnalytics intensity={scrollProgress} />
+                <DepthAnalytics intensity={scrollProgress * mobileOpacity} />
             </group>
 
             {/* SHAPE SHIFTER (Sprite Effect) */}
@@ -102,7 +104,7 @@ export const SceneController = ({ intro, introPhase = 0 }: { intro: boolean, int
             </group>
             {/* ONBOARDING KINECT REUSE */}
             <group ref={onboardingRef} scale={[mobileScale, mobileScale, mobileScale]}>
-                <DepthAnalytics intensity={scrollProgress} variant="onboarding" />
+                <DepthAnalytics intensity={scrollProgress * mobileOpacity} variant="onboarding" />
             </group>
         </>
     )

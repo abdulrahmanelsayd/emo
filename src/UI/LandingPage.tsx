@@ -47,10 +47,10 @@ export const LandingPageUI = () => {
                     style={{ pointerEvents: 'auto', textAlign: 'center' }}
                 >
                     <h1 style={{
-                        fontSize: isMobile ? '20vw' : '15vw',
+                        fontSize: isMobile ? '18vw' : '15vw', // Kept large but slightly adjusted
                         fontWeight: 900,
-                        letterSpacing: '-0.05em',
-                        lineHeight: 0.8,
+                        letterSpacing: isMobile ? '-0.02em' : '-0.05em',
+                        lineHeight: 0.85,
                         background: 'linear-gradient(to bottom, #ffffff, #888888)',
                         WebkitBackgroundClip: 'text',
                         WebkitTextFillColor: 'transparent',
@@ -59,11 +59,25 @@ export const LandingPageUI = () => {
                     }}>
                         LUMINA
                     </h1>
-                    <p style={{ fontSize: isMobile ? '1rem' : '1.5rem', opacity: 0.7, marginTop: '1rem', letterSpacing: '0.2em' }}>
+                    <p style={{
+                        fontSize: isMobile ? '0.9rem' : '1.5rem',
+                        opacity: 0.7,
+                        marginTop: '1.5rem',
+                        letterSpacing: '0.2em',
+                        lineHeight: 1.5,
+                        padding: isMobile ? '0 1rem' : '0'
+                    }}>
                         THE AFFILIATE NEXUS
                     </p>
-                    <div style={{ marginTop: '2rem' }}>
-                        <span style={{ fontSize: '0.8rem', border: '1px solid rgba(255,255,255,0.2)', padding: '10px 20px', borderRadius: '30px' }}>
+                    <div style={{ marginTop: '3rem' }}>
+                        <span style={{
+                            fontSize: '0.8rem',
+                            border: '1px solid rgba(255,255,255,0.2)',
+                            padding: '12px 24px',
+                            borderRadius: '30px',
+                            background: isMobile ? 'rgba(0,0,0,0.3)' : 'transparent', // Better contrast on mobile
+                            backdropFilter: 'blur(5px)'
+                        }}>
                             SCROLL TO START
                         </span>
                     </div>
@@ -71,17 +85,31 @@ export const LandingPageUI = () => {
             </Section>
 
             {/* PAGE 2: WHITE MANIFESTO */}
-            <Section align="center" theme="white" padding={isMobile ? "0 5%" : "0 15%"}>
+            <Section align="center" theme="white" padding={isMobile ? "0 8%" : "0 15%"}>
                 <motion.div
                     initial={{ opacity: 0, scale: 0.95 }}
                     whileInView={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.8 }}
                     style={{ pointerEvents: 'auto', textAlign: 'center' }}
                 >
-                    <h2 style={{ fontSize: isMobile ? '10vw' : '6vw', fontWeight: 900, letterSpacing: '-0.02em', lineHeight: 1, marginBottom: '2rem' }}>
+                    <h2 style={{
+                        fontSize: isMobile ? '3rem' : '6vw',
+                        fontWeight: 900,
+                        letterSpacing: '-0.02em',
+                        lineHeight: 1,
+                        marginBottom: '1.5rem',
+                        color: '#111' // Darker black for better read
+                    }}>
                         THE NEW STANDARD.
                     </h2>
-                    <p style={{ fontSize: isMobile ? '1.1rem' : '1.5rem', opacity: 0.6, maxWidth: '800px', margin: '0 auto', lineHeight: 1.6 }}>
+                    <p style={{
+                        fontSize: isMobile ? '1rem' : '1.5rem',
+                        opacity: 0.7,
+                        maxWidth: '800px',
+                        margin: '0 auto',
+                        lineHeight: 1.6,
+                        fontWeight: 500
+                    }}>
                         We don't just track clicks. We engineer ecosystem dominance.
                         Lumina is the world's first AI-driven affiliate verification layer.
                     </p>
@@ -96,53 +124,61 @@ export const LandingPageUI = () => {
                     transition={{ duration: 0.8 }}
                     style={{
                         pointerEvents: 'auto',
-                        background: 'rgba(0, 0, 0, 0.4)',
-                        backdropFilter: 'blur(20px)',
-                        padding: '40px',
+                        background: 'rgba(0, 0, 0, 0.6)', // Darker background for readability
+                        backdropFilter: 'blur(30px)', // Stronger blur
+                        padding: isMobile ? '30px 20px' : '40px',
                         borderRadius: '20px',
                         border: '1px solid rgba(255,255,255,0.1)',
                         maxWidth: '500px',
-                        textAlign: isMobile ? 'center' : 'left'
+                        textAlign: isMobile ? 'center' : 'left',
+                        margin: isMobile ? '0 auto' : '0' // Center card
                     }}
                 >
-                    <h2 style={{ fontSize: '2.5rem', marginBottom: '1rem' }}>Transparent Analytics</h2>
-                    <p style={{ lineHeight: 1.6, marginBottom: '2rem', opacity: 0.8 }}>
+                    <h2 style={{ fontSize: isMobile ? '2rem' : '2.5rem', marginBottom: '1rem', lineHeight: 1.1 }}>Transparent Analytics</h2>
+                    <p style={{ lineHeight: 1.6, marginBottom: '2rem', opacity: 0.9, fontSize: isMobile ? '0.95rem' : '1rem' }}>
                         Holographic tracking of every conversion.
                         Our deep-scan technology ensures 100% attribution accuracy.
                     </p>
                     <div style={{ display: 'flex', gap: '20px', justifyContent: isMobile ? 'center' : 'flex-start' }}>
                         <div>
                             <div style={{ fontSize: '2rem', fontWeight: 'bold', color: '#80ff80' }}>99.9%</div>
-                            <div style={{ fontSize: '0.8rem', opacity: 0.6 }}>UPTIME</div>
+                            <div style={{ fontSize: '0.8rem', opacity: 0.6, letterSpacing: '0.1em' }}>UPTIME</div>
                         </div>
                         <div>
                             <div style={{ fontSize: '2rem', fontWeight: 'bold', color: '#80ff80' }}>0.01s</div>
-                            <div style={{ fontSize: '0.8rem', opacity: 0.6 }}>LATENCY</div>
+                            <div style={{ fontSize: '0.8rem', opacity: 0.6, letterSpacing: '0.1em' }}>LATENCY</div>
                         </div>
                     </div>
                 </motion.div>
             </Section>
 
             {/* PAGE 4: WHITE DATA */}
-            <Section align="left" theme="white" padding={isMobile ? "0 5%" : "0 10%"}>
+            <Section align="left" theme="white" padding={isMobile ? "0 8%" : "0 10%"}>
                 <motion.div
                     initial={{ opacity: 0, x: -50 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.8 }}
                     style={{ pointerEvents: 'auto', maxWidth: isMobile ? '100%' : '80%' }}
                 >
-                    <h2 style={{ fontSize: isMobile ? '15vw' : '8vw', fontWeight: 900, lineHeight: 0.9, letterSpacing: '-0.04em', color: '#000' }}>
+                    <h2 style={{
+                        fontSize: isMobile ? '3.5rem' : '8vw',
+                        fontWeight: 900,
+                        lineHeight: 0.9,
+                        letterSpacing: '-0.04em',
+                        color: '#000',
+                        marginBottom: '2rem'
+                    }}>
                         PURE DATA.<br />
                         PURE PROFIT.
                     </h2>
-                    <div style={{ marginTop: '3rem', display: 'flex', flexDirection: isMobile ? 'column' : 'row', gap: isMobile ? '2rem' : '4rem' }}>
+                    <div style={{ marginTop: isMobile ? '2rem' : '3rem', display: 'flex', flexDirection: isMobile ? 'column' : 'row', gap: isMobile ? '2rem' : '4rem' }}>
                         <div>
-                            <h3 style={{ fontSize: '1.2rem', fontWeight: 'bold', marginBottom: '0.5rem' }}>01. VERIFY</h3>
-                            <p style={{ opacity: 0.6, maxWidth: '300px' }}>Real-time user verification eliminates bot traffic instantly.</p>
+                            <h3 style={{ fontSize: '1.1rem', fontWeight: 'bold', marginBottom: '0.5rem', textTransform: 'uppercase', opacity: 0.8 }}>01. Verify</h3>
+                            <p style={{ opacity: 0.7, maxWidth: '300px', lineHeight: 1.5, fontSize: '0.95rem' }}>Real-time user verification eliminates bot traffic instantly.</p>
                         </div>
                         <div>
-                            <h3 style={{ fontSize: '1.2rem', fontWeight: 'bold', marginBottom: '0.5rem' }}>02. SCALE</h3>
-                            <p style={{ opacity: 0.6, maxWidth: '300px' }}>Infrastructure built to handle 10M+ events per second.</p>
+                            <h3 style={{ fontSize: '1.1rem', fontWeight: 'bold', marginBottom: '0.5rem', textTransform: 'uppercase', opacity: 0.8 }}>02. Scale</h3>
+                            <p style={{ opacity: 0.7, maxWidth: '300px', lineHeight: 1.5, fontSize: '0.95rem' }}>Infrastructure built to handle 10M+ events per second.</p>
                         </div>
                     </div>
                 </motion.div>
@@ -154,23 +190,31 @@ export const LandingPageUI = () => {
                     initial={{ opacity: 0, scale: 0.9 }}
                     whileInView={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.8 }}
-                    style={{ pointerEvents: 'auto', maxWidth: '600px', textAlign: isMobile ? 'center' : 'left' }}
+                    style={{
+                        pointerEvents: 'auto',
+                        maxWidth: '600px',
+                        textAlign: isMobile ? 'center' : 'left',
+                        background: isMobile ? 'rgba(0,0,0,0.4)' : 'transparent', // Add scrim for mobile
+                        padding: isMobile ? '2rem' : '0',
+                        borderRadius: '20px'
+                    }}
                 >
-                    <h2 style={{ fontSize: isMobile ? '15vw' : '4rem', lineHeight: 1 }}>Global scale. <br /> Local Reach.</h2>
-                    <p style={{ fontSize: isMobile ? '1rem' : '1.2rem', margin: '2rem 0', opacity: 0.8 }}>
+                    <h2 style={{ fontSize: isMobile ? '3rem' : '4rem', lineHeight: 1, fontWeight: 800 }}>Global Scale. <br /> Local Reach.</h2>
+                    <p style={{ fontSize: isMobile ? '1rem' : '1.2rem', margin: '1.5rem 0', opacity: 0.8, lineHeight: 1.5 }}>
                         Join a network of 500,000+ elite affiliates lighting up the digital map.
                     </p>
                     <button style={{
                         background: '#fff',
                         color: '#000',
                         border: 'none',
-                        padding: '15px 40px',
+                        padding: '16px 40px',
                         fontSize: '1rem',
                         fontWeight: 'bold',
-                        borderRadius: '30px',
+                        borderRadius: '50px',
                         cursor: 'pointer',
                         transition: 'transform 0.2s',
-                        width: isMobile ? '100%' : 'auto'
+                        width: isMobile ? '100%' : 'auto',
+                        boxShadow: '0 4px 20px rgba(255,255,255,0.2)'
                     }}>
                         JOIN THE NETWORK
                     </button>
@@ -183,11 +227,11 @@ export const LandingPageUI = () => {
                     width: '100%',
                     display: 'grid',
                     gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr 1fr 1fr',
-                    gap: '2rem',
+                    gap: isMobile ? '2.5rem' : '2rem',
                     pointerEvents: 'auto',
                     borderTop: '1px solid rgba(255,255,255,0.1)',
                     paddingTop: '3rem',
-                    textAlign: isMobile ? 'left' : 'left'
+                    textAlign: isMobile ? 'center' : 'left'
                 }}>
                     {/* COL 1: BRAND */}
                     <div>
