@@ -42,35 +42,46 @@ export const LandingPageUI = () => {
         <div style={{ width: '100%', position: 'absolute', top: 0, left: 0, pointerEvents: 'none' }}>
 
             {/* PAGE 1: HERO */}
-            <Section align="center" padding={isMobile ? "0 24px" : "0 2%"}>
+            <Section align="center" padding={isMobile ? "0 24px" : "0 4%"}>
                 <motion.div
                     initial={{ opacity: 0, y: 50 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 1, delay: 0.5 }}
-                    style={{ pointerEvents: 'auto', textAlign: 'center', width: '100%' }}
+                    style={{
+                        pointerEvents: 'auto',
+                        textAlign: 'center',
+                        width: '100%',
+                        maxWidth: '1400px', // constrain slightly on ultra-wide
+                        background: 'rgba(255, 255, 255, 0.03)', // Very subtle glass
+                        backdropFilter: 'blur(10px)',
+                        borderRadius: isMobile ? '30px' : '50px', // Rounded corners
+                        border: '1px solid rgba(255, 255, 255, 0.05)',
+                        padding: isMobile ? '40px 20px' : '80px 40px',
+                        boxShadow: '0 20px 50px rgba(0,0,0,0.2)'
+                    }}
                 >
                     <h1 style={{
-                        fontSize: isMobile ? '3.5rem' : '15vw', // Standard cleaner size
+                        fontSize: isMobile ? '3.5rem' : '12vw', // Reduced desktop size slightly to fit in card
                         fontWeight: 900,
                         letterSpacing: '-0.03em',
                         lineHeight: 0.9,
                         color: '#fff',
                         margin: 0,
-                        textShadow: '0 10px 30px rgba(0,0,0,0.5)' // Better contrast against 3D
+                        textShadow: '0 10px 30px rgba(0,0,0,0.5)'
                     }}>
                         LUMINA
                     </h1>
                     <p style={{
                         fontSize: isMobile ? '1rem' : '1.5rem',
                         opacity: 0.8,
-                        marginTop: '1.5rem',
+                        marginTop: isMobile ? '1.5rem' : '2rem',
                         letterSpacing: '0.2em',
                         lineHeight: 1.5,
                         textTransform: 'uppercase'
                     }}>
                         The Affiliate Nexus
                     </p>
-                    <div style={{ marginTop: '3rem' }}>
+                    <div style={{ marginTop: isMobile ? '2rem' : '4rem' }}>
                         <span style={{
                             fontSize: '0.75rem',
                             border: '1px solid rgba(255,255,255,0.3)',
