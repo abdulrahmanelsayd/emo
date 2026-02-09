@@ -43,7 +43,10 @@ function App() {
         return () => window.removeEventListener('resize', checkMobile)
     }, [])
 
-    const pages = isMobile ? 6 : 5
+    // 6 Sections total (Hero, Manifesto, Analytics, Data, CTA, Footer)
+    // Mobile needs extra scroll space (7) due to vertical stacking.
+    // Desktop needs exact match (6).
+    const pages = isMobile ? 7 : 6
 
     return (
         <>
