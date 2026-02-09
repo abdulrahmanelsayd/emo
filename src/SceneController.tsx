@@ -5,13 +5,17 @@ import * as THREE from 'three'
 import { FluidStart } from './scenes/FluidStart'
 import { DepthAnalytics } from './scenes/DepthAnalytics'
 import { ShapeShifter } from './scenes/ShapeShifter'
+import { SpotlightIntro } from './scenes/SpotlightIntro'
 
 export const SceneController = ({ intro, introPhase = 0, totalPages = 5 }: { intro: boolean, introPhase?: number, totalPages?: number }) => {
     const { viewport } = useThree()
-    // Mobile Logic: Dim the background significantly for readability
-    const isMobile = viewport.width < 5
-    const mobileScale = isMobile ? 0.7 : 1
-    const mobileOpacity = isMobile ? 0.3 : 1 // 30% opacity on mobile
+    // Premium Mobile Logic: Much dimmer background for text readability
+    const isPhone = viewport.width < 4
+    const isTablet = viewport.width >= 4 && viewport.width < 6
+
+    // More aggressive scaling/opacity on phone for performance + readability
+    const mobileScale = isPhone ? 0.5 : isTablet ? 0.7 : 1
+    const mobileOpacity = isPhone ? 0.2 : isTablet ? 0.35 : 1
 
     const scroll = useScroll()
     const [scrollProgress, setScrollProgress] = useState(0)
@@ -81,9 +85,9 @@ export const SceneController = ({ intro, introPhase = 0, totalPages = 5 }: { int
 
     return (
         <>
-            {/* INTRO SCENE */}
-            <group ref={introRef} visible={intro} scale={[mobileScale, mobileScale, mobileScale]}>
-                <DepthAnalytics intensity={1} variant="intro" introPhase={introPhase} />
+            {/* INTRO SCENE - Spotlight with Abstract Monolith */}
+            <group ref={introRef} visible={intro}>
+                <SpotlightIntro introPhase={introPhase} />
             </group>
 
             <group ref={fluidRef}>

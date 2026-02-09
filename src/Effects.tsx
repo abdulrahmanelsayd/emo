@@ -4,10 +4,10 @@ export const Effects = () => {
     return (
         <EffectComposer>
             <Bloom
-                luminanceThreshold={0.2}
+                luminanceThreshold={0.1} // Lower threshold to catch colored particles
                 mipmapBlur
-                intensity={0.5}
-                radius={0.4}
+                intensity={1.5} // Higher intensity for "Tron" look
+                radius={0.6}
             />
             <Noise opacity={0.05} />
             <Vignette eskil={false} offset={0.1} darkness={1.1} />
