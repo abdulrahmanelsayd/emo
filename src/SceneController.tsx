@@ -6,7 +6,7 @@ import { FluidStart } from './scenes/FluidStart'
 import { DepthAnalytics } from './scenes/DepthAnalytics'
 import { ShapeShifter } from './scenes/ShapeShifter'
 
-export const SceneController = ({ intro, introPhase = 0 }: { intro: boolean, introPhase?: number }) => {
+export const SceneController = ({ intro, introPhase = 0, totalPages = 5 }: { intro: boolean, introPhase?: number, totalPages?: number }) => {
     const { viewport } = useThree()
     // Mobile Logic: Dim the background significantly for readability
     const isMobile = viewport.width < 5
@@ -39,43 +39,39 @@ export const SceneController = ({ intro, introPhase = 0 }: { intro: boolean, int
         // STANDARD SCROLL MODE
         if (introRef.current) introRef.current.visible = false
 
-        // 5 PAGES TOTAL
-        // Page 0: Fluid
-        // Page 1: White
-        // Page 2: Depth
-        // Page 3: White
-        // Page 4: Network
+        // DYNAMICS: Normalize logic by totalPages
+        // Page 0 is 0..1/N, Page 1 is 1/N..2/N etc.
+        const pageDuration = 1 / totalPages
 
-        // FLUID SCENE: Visible on Page 0 (0.0 - 0.2). Fades out by 0.2.
+        // FLUID SCENE: Visible on Page 0.
         if (fluidRef.current) {
-            // Range(0, 1/5) covers the first page
-            const opacity = 1 - scroll.range(0, 1 / 5)
+            const opacity = 1 - scroll.range(0, pageDuration)
             fluidRef.current.position.z = -scroll.offset * 5 // Parallax push
             // @ts-ignore
             fluidRef.current.visible = opacity > 0.01
         }
 
-        // DEPTH SCENE: Visible on Page 2 (0.4 - 0.6).
+        // DEPTH SCENE: Visible on Page 2.
+        // Starts at 2 * pageDuration
         if (depthRef.current) {
-            // Curve centered at 2/4 = 0.5? No, page 2 is 40%-60%
-            // scroll.curve(offset, length)
-            // We want it to peak at 0.5 (Page 2.5 center). 2/5 = 0.4 start. 
-            const curve = scroll.curve(2 / 5, 1 / 5)
+            const curve = scroll.curve(2 * pageDuration, pageDuration)
             // @ts-ignore
             depthRef.current.visible = curve > 0.01
             depthRef.current.rotation.y = scroll.offset * Math.PI
         }
 
-        // NETWORK SCENE: Visible on Page 4 (0.8 - 1.0).
+        // NETWORK SCENE: Visible on Page 4.
+        // Starts at 4 * pageDuration
         if (networkRef.current) {
-            const fadeIn = scroll.range(4 / 5, 1 / 5)
+            const fadeIn = scroll.range(4 * pageDuration, pageDuration)
             // @ts-ignore
             networkRef.current.visible = fadeIn > 0.01
         }
 
-        // ONBOARDING (reuse Kinect): Visible at very end
+        // ONBOARDING (reuse Kinect): Visible at very end (last 10% of scroll?)
+        // Or mapped to the final page? Let's say last page.
         if (onboardingRef.current) {
-            const fadeIn = scroll.range(0.9, 0.1)
+            const fadeIn = scroll.range(1 - pageDuration, pageDuration)
             // @ts-ignore
             onboardingRef.current.visible = fadeIn > 0.01
             // @ts-ignore

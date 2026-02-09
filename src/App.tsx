@@ -34,6 +34,17 @@ function App() {
         "ACCESS GRANTED. WELCOME, AGENT."
     ]
 
+    // Mobile Logic for Scroll Height
+    const [isMobile, setIsMobile] = useState(false)
+    useEffect(() => {
+        const checkMobile = () => setIsMobile(window.innerWidth < 768)
+        checkMobile()
+        window.addEventListener('resize', checkMobile)
+        return () => window.removeEventListener('resize', checkMobile)
+    }, [])
+
+    const pages = isMobile ? 6 : 5
+
     return (
         <>
             <Canvas
@@ -44,9 +55,9 @@ function App() {
                 <color attach="background" args={['#050505']} />
 
                 <Suspense fallback={null}>
-                    <ScrollControls pages={5} damping={0.2} style={{ scrollbarWidth: 'none' }} enabled={!intro}>
+                    <ScrollControls pages={pages} damping={0.2} style={{ scrollbarWidth: 'none' }} enabled={!intro}>
                         {/* The 3D Scene transitions based on scroll */}
-                        <SceneController intro={intro} introPhase={introPhase} />
+                        <SceneController intro={intro} introPhase={introPhase} totalPages={pages} />
 
                         {/* The HTML UI overlay that syncs with scroll */}
                         {!intro && (
